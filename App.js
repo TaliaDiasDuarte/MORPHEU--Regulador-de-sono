@@ -1,51 +1,93 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,ImageBackground} from 'react-native';
+
+import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
+
 
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-     
-      <StatusBar style="auto" />
-    
-      <ImageBackground source={require('./assets/bkd-morpheu.png')}style={{width: '100%', height: '100%'}}>
-        
-      <Text style={styles.text}>Teste01</Text>
+    //Campo email
+    <View style={estilos.container}>
+       
+      <Text style={estilos.texto}>
+        E-mail
+      </Text>
+      <TextInput
+        style={estilos.input} />
 
-    </ImageBackground>
+      <Text style={estilos.texto}>
+        Senha
+      </Text>
+      <TextInput
+        style={estilos.input}
+        secureTextEntry={true} />
+
+
+      <Text style={estilos.texto}>
+        Como prefere ser chamado:
+      </Text>
+      <TextInput
+        style={estilos.input} />
+
+
+      <Text style={estilos.texto}>
+        Informe sua idade:
+      </Text>
+      <TextInput
+        style={estilos.input}
+        keyboardType="number-pad" />
+
+
+
+
+     
+
+
+      <TouchableOpacity style={estilos.button}>
+        <Text style={estilos.textobotao} >
+          CADASTRAR
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-
-
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
   container: {
-   
     flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
+    backgroundColor: '#FCFAFF',
     alignItems: 'center',
-    
-  },
-  image: {
-    flex: 1,
     justifyContent: 'center',
+    gap: 8
+  },
+  //texto acima das caixas
+  texto: {
+    color: "#000",
+    fontSize: 12,
+
+  },
+  //texto que vai dentro da caixa
+  input: {
+    borderWidth: 1,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    borderRadius: 8,
+    width: "80%",
+    backgroundColor:'#EBE8F8',
+    borderRadius: 20,
+  },
+  button: {
+    backgroundColor: "#110E26",
+    paddingHorizontal: 80,
+    paddingVertical: 16,
+    borderRadius: 28,
+    marginTop:12,
+    
     
   },
-
-  text: {
-    color: 'white',
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    justifyContent:'center',
-    // Isso é uma gambiarra precisa ser centralizado usando provavelmente os containers
-    marginTop:'85%',
-    backgroundColor: '#000000c0',
-  },
+  textobotao: {
+    color:"white"
+  }
 });
 
 
