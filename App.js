@@ -10,49 +10,27 @@ export default function App() {
   //importador de fonte
   const [] = useFonts({ 'Inter-Medium': require('./assets/fonts/Inter-Medium.ttf') });
 
+  const [Email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [isEmptyEmail, setIsEmptyEmail] = useState(false);
+  const [isEmptySenha, setIsEmptySenha] = useState(false);
 
 
-//recebendo as variaveis email
-  const [email, setEmail] = useState(null)
-  const [errorEmail, setErrorEmail] = useState(null)
+  function fnValidar() {
+    let sEmail = Email;
+    let sSenha = senha;
 
-//recebendo variaveis senha
-  const [senha, setSenha] = useState(null)
-  const [errorSenha, setErrorSenha] = useState(null)
-
-
-
-  const validar = () => {
-    let error = false
-    setErrorEmail(null)
-
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (!re.test(String(email).toLowerCase())) {
-      setErrorEmail("Preencha seu e-mail corretamente");
-      console.log("Preencha seu e-mail corretamente");
-       
-      error = true
-    }
-    
-    
-
-    if(senha === null){
-      setErrorSenha("Preencha sua senha")
-      error = true
-      
-      console.log("Preencha seu senha");
-
-    }
-    return !error
-
-  }
-
-  const salvar = () => {
-    if (validar()) {
-      console.log("Salvou email");
+    if (sEmail == '') {
+      setIsEmptyEmail(true);
+    } else {
+      setIsEmptyEmail(false);
     }
 
-
+    if (sSenha == '') {
+      setIsEmptySenha(true);
+    } else {
+      setIsEmptySenha(false);
+    }
   }
 
 
@@ -72,20 +50,17 @@ export default function App() {
 
      
       <TextInput
-        placeholder="E-mail"
+        placeholder="Email"
         placeholderTextColor="#666666"
         style={estilos.input}
-
-        onChangeText={value => {
-          setEmail(value)
-          setErrorEmail(null)
-          
-        }}
-        errorMessage={errorEmail} 
-        
+        value={Email}
+        onChangeText={(text) => setEmail(text)}
       />
+      <Text style={estilos.alerta}>
+        {isEmptySenha == true ? "Campo obrigatório" : ""}
+      </Text>
 
-   <Text style={estilos.errorMessage}>{errorEmail} </Text> 
+
        
       
       
@@ -103,13 +78,14 @@ export default function App() {
         placeholder="Senha"
         placeholderTextColor="#666666"
         secureTextEntry={true}
+        value={senha}
+        onChangeText={(text) => setSenha(text)}
+      />
+      <Text style={estilos.alerta}>
+        {isEmptySenha == true ? "Campo Vazio" : ""}
+      </Text>
 
-        onChangeText={value => {setSenha(value);
-          setErrorSenha(null);
-          
-      }}/>
-      
-      <Text style={estilos.errorMessage}>{errorSenha} </Text>
+     
 
 
       {/* Campo nome */}
@@ -141,8 +117,8 @@ export default function App() {
 
       {/* style={estilos.button} */}
       <TouchableOpacity style={estilos.button}
-
-        onPress={() => salvar()}>
+        onPress={fnValidar}
+        >
 
 
 
@@ -200,13 +176,8 @@ const estilos = StyleSheet.create({
     height: "400",
     padding: 50,
     marginBottom: 50,
-  },
-  errorMessage:{
-    color: "#524e81",
-    fontSize: 12,
-    backgroundColor: '#FCFAFF',
-    fontFamily: 'Inter-Medium',
   }
+ 
 });
 
 
