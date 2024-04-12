@@ -1,3 +1,28 @@
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import cadastro from './src/Pages/cadastro';
+import home from './src/Pages/home';
+
+const Stack = createStackNavigator();
+
+
+
+export default function App() {
+  resturn (
+    <NavigationContainer>
+
+      <Stack.Navigator initialRouteName='home'>
+
+        <Stack.Screen name="home" component={home}/>
+        <Stack.Screen name="cadastro" component={cadastro}/>
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Input ,Alert} from 'react-native';
 import logoImage from './src/img/logo.png';
