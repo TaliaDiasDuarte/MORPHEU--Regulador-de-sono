@@ -7,9 +7,9 @@ export default function Cadastro({ navigation }){
     }
     return(
         <View>
-            <text>
+            <Text>
                 Estou no Cadastro
-            </text>
+            </Text>
         </View>
     );
 }
